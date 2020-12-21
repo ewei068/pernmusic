@@ -15,27 +15,29 @@ const List = () => {
     const response = await fetch("http://localhost:8000/likes/" + id);
     const jsonData = await response.json();
     setLikes(jsonData);
-    //console.log(jsonData);
   }
 
   useEffect(() => {
     getUsers();
   }, []);
-  // console.log(likes);
-
-  //console.log(users);
 
   return (
     <Fragment>
+      {/* dropdown list in form:
+        user_last_name, user_first_name */}
       <div class="d-flex justify-content-center mt-5">
         <DropdownButton id="dropdown-basic-button" title="Users">
         {
           users.map(user => (
-            <Dropdown.Item onClick = {() => getLikes(user.user_id)}>{user.user_last_name + ', ' + user.user_first_name}</Dropdown.Item>
+            <Dropdown.Item onClick = {() => getLikes(user.user_id)}>
+              {user.user_last_name + ', ' + user.user_first_name}
+            </Dropdown.Item>
           ))
         }
         </DropdownButton>
       </div>
+
+      {/* table filled with selected user's likes */}
       <table class="table mt-5 text-center">
         <thead>
           <tr>

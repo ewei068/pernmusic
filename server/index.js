@@ -6,10 +6,20 @@ const pool = require("./db");
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// API Endpoints
 
-// GET list of users
-
+/*
+GETs list of users.
+Returns JSON object of relevant user information
+  [
+      {
+          "user_id": ...,
+          "user_last_name": ...,
+          "user_first_name": ...
+      },
+      ...
+  ]
+*/
 app.get("/users", async (req, res) => {
   const users = await pool.query(
     "SELECT user_id, user_last_name, user_first_name FROM users"
@@ -17,8 +27,16 @@ app.get("/users", async (req, res) => {
   res.json(users.rows);
 })
 
-// GET user's likes
-
+/*
+GETs likes from the user with :id
+Returns JSON object with groups that the given user likes
+  [
+      {
+          "fan_of_music_group": ...
+      },
+      ...
+  ]
+*/
 app.get("/likes/:id", async (req, res) => {
   const {id} = req.params;
   const likes = await pool.query(
