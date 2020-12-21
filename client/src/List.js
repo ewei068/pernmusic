@@ -27,13 +27,15 @@ const List = () => {
 
   return (
     <Fragment>
-      <DropdownButton id="dropdown-basic-button" title="Users">
-      {
-        users.map(user => (
-          <Dropdown.Item onClick = {() => getLikes(user.user_id)}>{user.user_last_name + ', ' + user.user_first_name}</Dropdown.Item>
-        ))
-      }
-      </DropdownButton>
+      <div class="d-flex justify-content-center mt-5">
+        <DropdownButton id="dropdown-basic-button" title="Users">
+        {
+          users.map(user => (
+            <Dropdown.Item onClick = {() => getLikes(user.user_id)}>{user.user_last_name + ', ' + user.user_first_name}</Dropdown.Item>
+          ))
+        }
+        </DropdownButton>
+      </div>
       <table class="table mt-5 text-center">
         <thead>
           <tr>
